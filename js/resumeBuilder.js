@@ -40,5 +40,31 @@ bio.display = function(){
   $("#footerContacts").append(formattedLocation);
 }
 
+var work = {
+  "jobs" : [
+    {
+      "employer" : "Self",
+      "title" : "Student",
+      "location" : "Rajajinagar, Bangalore",
+      "date" : "In Progress",
+      "description" : "Studying web development, data structures and algorithms."
+    }
+  ]
+}
+
+work.display = function(){
+  $("#workExperience").append(HTMLworkStart);
+  var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[0].employer);
+  var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[0].title);
+  var formattedDate = HTMLworkDates.replace("%data%", work.jobs[0].date);
+  var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[0].location);
+  var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[0].description);
+  $(".work-entry").append(formattedEmployer + formattedTitle);
+  $(".work-entry").append(formattedDate);
+  $(".work-entry").append(formattedLocation);
+  $(".work-entry").append(formattedDescription);
+}
+
 bio.display();
+work.display();
 
