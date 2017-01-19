@@ -123,12 +123,94 @@ projects.display = function(){
     var formattedDescription = HTMLprojectDescription.replace("%data%", 
                                                         project.description);
     var formattedImage = HTMLprojectImage.replace("%data%", project.image);
-    $(".project-entry:last").append(formattedLink + formattedTitle, formattedDate, 
-      formattedDescription, formattedImage);
+    $(".project-entry:last").append(formattedLink + formattedTitle, 
+      formattedDate, formattedDescription, formattedImage);
+  });
+}
+
+var education = {
+  "schools" : [
+    {
+      "name" : "M.S Ramaiah College of Arts, Science and Commerce",
+      "location" : "Mathikere, Bangalore",
+      "degree" : "BCA",
+      "date" : "2016 - 18",
+      "majors" : ["CS"],
+      "url" : "https://msrcasc.edu.in"
+    }
+  ],
+  "onlineCourses" : [
+    {
+      "title" : "Front-end Web Development",
+      "school" : "Udacity",
+      "date" : "2017",
+      "url" : "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001",
+      "description" : "Learnt the fundamentals of how the web works, gained \
+       working knowledge of the three foundational languages that power each \
+       and every website: HTML, CSS and JavaScript and thus helped in building\
+       beautiful, responsive websites optimized for mobile and desktop performance."
+    },
+    {
+      "title" : "Algorithmic Thinking: Part 1",
+      "school" : "Rice University",
+      "date" : "2015",
+      "url" : "https://www.coursera.org/learn/algorithmic-thinking-1",
+      "description" : "Learnt analysing efficiency of algorithms and graph \
+       algorithms.Applied the same in analysis of citation graphs and \
+       computer networks."
+    },
+    {
+      "title" : "Algorithmic Thinking: Part 2",
+      "school" : "Rice University",
+      "date" : "2015",
+      "url" : "https://www.coursera.org/learn/algorithmic-thinking-2",
+      "description" : "Learnt divide and conquer and dynamic programming \
+        techniques. Applied the same in finding closest pair using different \
+        clustering algorithms and application of sequence alignments in \
+        genomics and text comparison."
+    },
+    {
+      "title" : "Algorithm: Design and Analysis",
+      "school" : "Stanford University",
+      "date" : "2014",
+      "url" : "http://online.stanford.edu/course/algorithms-design-and-analysis-part-1",
+      "description" : "Learnt asymptotic analysis, divide and conquer \
+        algorithms, sorting and searching, basic randomized algorithms, \
+        graph search, shortest paths, heaps, search trees, and hash tables."
+    }
+  ]
+}
+
+education.display = function(){
+  $("#education").append(HTMLschoolStart);
+  var formattedLink = HTMLschoolLink.replace("%data%", education.schools[0].url);
+  var formattedName = HTMLschoolName.replace("%data%", 
+    education.schools[0].name);
+  var formattedDegree = HTMLschoolDegree.replace("%data%", 
+    education.schools[0].degree);
+  var formattedLocation = HTMLschoolLocation.replace("%data%", 
+    education.schools[0].location);
+  var formattedDate = HTMLschoolDates.replace("%data%", education.schools[0].date);
+  var formattedMajor = HTMLschoolMajor.replace("%data%", education.schools[0].majors);
+  
+  $(".education-entry").append(formattedLink + formattedName + formattedDegree, 
+      formattedDate, formattedLocation, formattedMajor);
+
+  $("#education").append(HTMLonlineClasses);
+  education.onlineCourses.forEach(function(course){
+    $("#education").append(HTMLschoolStart);
+    var formattedTitle = HTMLonlineTitle.replace("%data%", course.title);
+    var formattedSchool = HTMLonlineSchool.replace("%data%", course.school);
+    var formattedDate = HTMLonlineDates.replace("%data%", course.date);
+    var formattedUrl = HTMLonlineLink.replace("%data%", course.url);
+    var formattedDescription = HTMLonlineDescription.replace("%data%", 
+      course.description);
+    $(".education-entry:last").append(formattedUrl + formattedTitle + 
+      formattedSchool, formattedDate, formattedDescription);
   });
 }
 
 bio.display();
 work.display();
 projects.display();
-
+education.display();
