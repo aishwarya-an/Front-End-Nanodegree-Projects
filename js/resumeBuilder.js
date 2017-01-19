@@ -8,7 +8,9 @@ var bio = {
     "location" : "Rajajinagar, Bengaluru"
   },
   "welcomeMessage" : "",
-  "skills" : ["images/logo-html5.svg", "images/logo-css3.svg", "images/logo-javascript.svg", "images/logo-jquery.svg", "images/logo-git.svg"],
+  "skills" : ["images/logo-html5.svg", "images/logo-css3.svg", 
+              "images/logo-javascript.svg", "images/logo-jquery.svg", 
+              "images/logo-git.svg"],
   "biopic" : "images/biopic.png"
 }
 
@@ -54,17 +56,79 @@ var work = {
 
 work.display = function(){
   $("#workExperience").append(HTMLworkStart);
-  var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[0].employer);
+  var formattedEmployer = HTMLworkEmployer.replace("%data%", 
+    work.jobs[0].employer);
   var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[0].title);
   var formattedDate = HTMLworkDates.replace("%data%", work.jobs[0].date);
-  var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[0].location);
-  var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[0].description);
+  var formattedLocation = HTMLworkLocation.replace("%data%", 
+    work.jobs[0].location);
+  var formattedDescription = HTMLworkDescription.replace("%data%", 
+    work.jobs[0].description);
   $(".work-entry").append(formattedEmployer + formattedTitle);
   $(".work-entry").append(formattedDate);
   $(".work-entry").append(formattedLocation);
   $(".work-entry").append(formattedDescription);
 }
 
+var projects = {
+  "projects" : [
+    {
+      "title" : "Online Resume",
+      "link" : "#",
+      "date" : "2017",
+      "description" : "An Online Resume, built on Javascript objects appended \
+        with new skills and information dynamically via jQuery",
+      "image" : "images/resume.png"
+    },
+    {
+      "title" : "Portfolio Website",
+      "link" : "https://github.com/aishwarya-an/Portfolio-Website",
+      "date" : "2016",
+      "description" : "This website features the projects undertaken in the \
+        field of Algorithms and Front-end Web Development.",
+      "image" : "images/portfolio.png"
+    },
+    {
+      "title" : "Boggle",
+      "link" : "https://github.com/aishwarya-an/Boggle-Game",
+      "date" : "2015",
+      "description" : "This is a game to form words from a grid of letters.",
+      "image" : "images/boggle.jpg"
+    },
+    {
+      "title" : "Spelling Checker",
+      "link" : "https://github.com/aishwarya-an/Spelling-Checker",
+      "date" : "2015",
+      "description" : "This application checks the spelling of words in a \
+        file, prints words with spelling errors and suggests correct words.",
+      "image" : "images/spelling_checker.jpg"
+    },
+    {
+      "title" : "Maze Solver",
+      "link" : "https://github.com/aishwarya-an/Maze-Solver",
+      "date" : "2015",
+      "description" : "This is a game which creates a maze for the user to \
+        solve it.",
+      "image" : "images/maze.jpg"
+    }
+  ]
+}
+
+projects.display = function(){
+  projects.projects.forEach(function(project){
+    $("#projects").append(HTMLprojectStart);
+    var formattedLink = HTMLprojectLink.replace("%data%", project.link);
+    var formattedTitle = HTMLprojectTitle.replace("%data%", project.title);
+    var formattedDate = HTMLprojectDates.replace("%data%", project.date);
+    var formattedDescription = HTMLprojectDescription.replace("%data%", 
+                                                        project.description);
+    var formattedImage = HTMLprojectImage.replace("%data%", project.image);
+    $(".project-entry:last").append(formattedLink + formattedTitle, formattedDate, 
+      formattedDescription, formattedImage);
+  });
+}
+
 bio.display();
 work.display();
+projects.display();
 

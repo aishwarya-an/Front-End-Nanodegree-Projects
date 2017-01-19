@@ -186,6 +186,11 @@ span {
   padding-right: 60px;
 }
 
+.project-image{
+  height: 100px;
+  width: 100px;
+}
+
 #lets-connect {
   text-align: center;
 }
