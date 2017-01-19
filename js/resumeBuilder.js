@@ -15,6 +15,7 @@ var bio = {
 }
 
 bio.display = function(){
+  // Variables for the bio details
   var formattedName = HTMLheaderName.replace("%data%", bio.name);
   var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
   var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
@@ -22,6 +23,8 @@ bio.display = function(){
   var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
   var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
   var formattedBiopic = HTMLbioPic.replace("%data%", bio.biopic);
+
+  // Appending the variables onto the page
   $("#header").prepend(formattedRole);
   $("#header").prepend(formattedName);
   $("#topContacts").append(formattedMobile);
@@ -29,6 +32,8 @@ bio.display = function(){
   $("#topContacts").append(formattedGithub);
   $("#topContacts").append(formattedLocation);
   $("#header").append(formattedBiopic);
+
+  // Appending the skills
   if(bio.skills.length > 0){
     $("#header").append(HTMLskillsStart);
     for(var i = 0; i < bio.skills.length; i++){
@@ -36,6 +41,8 @@ bio.display = function(){
       $("#skills").append(formattedSkills);
     }
   }
+
+  // Adding the contacts to the footer of the page
   $("#footerContacts").append(formattedMobile);
   $("#footerContacts").append(formattedEmail);
   $("#footerContacts").append(formattedGithub);
@@ -55,7 +62,10 @@ var work = {
 }
 
 work.display = function(){
+  // Creating a new div for work section
   $("#workExperience").append(HTMLworkStart);
+
+  // Creating variables necessary to append the work details
   var formattedEmployer = HTMLworkEmployer.replace("%data%", 
     work.jobs[0].employer);
   var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[0].title);
@@ -64,6 +74,8 @@ work.display = function(){
     work.jobs[0].location);
   var formattedDescription = HTMLworkDescription.replace("%data%", 
     work.jobs[0].description);
+
+  // Appending the work details
   $(".work-entry").append(formattedEmployer + formattedTitle);
   $(".work-entry").append(formattedDate);
   $(".work-entry").append(formattedLocation);
@@ -115,14 +127,18 @@ var projects = {
 }
 
 projects.display = function(){
+  // for each project, create variables necessary to append the project details
   projects.projects.forEach(function(project){
+    // Creating a new div for each project
     $("#projects").append(HTMLprojectStart);
+
     var formattedLink = HTMLprojectLink.replace("%data%", project.link);
     var formattedTitle = HTMLprojectTitle.replace("%data%", project.title);
     var formattedDate = HTMLprojectDates.replace("%data%", project.date);
     var formattedDescription = HTMLprojectDescription.replace("%data%", 
                                                         project.description);
     var formattedImage = HTMLprojectImage.replace("%data%", project.image);
+
     $(".project-entry:last").append(formattedLink + formattedTitle, 
       formattedDate, formattedDescription, formattedImage);
   });
@@ -182,7 +198,9 @@ var education = {
 }
 
 education.display = function(){
+  // Creating a new div for the school
   $("#education").append(HTMLschoolStart);
+
   var formattedLink = HTMLschoolLink.replace("%data%", education.schools[0].url);
   var formattedName = HTMLschoolName.replace("%data%", 
     education.schools[0].name);
@@ -196,15 +214,21 @@ education.display = function(){
   $(".education-entry").append(formattedLink + formattedName + formattedDegree, 
       formattedDate, formattedLocation, formattedMajor);
 
+  // Appending the online course header
   $("#education").append(HTMLonlineClasses);
+
+  // For each online course undertaken, append the details 
   education.onlineCourses.forEach(function(course){
+    // Creating a new div for each course
     $("#education").append(HTMLschoolStart);
+
     var formattedTitle = HTMLonlineTitle.replace("%data%", course.title);
     var formattedSchool = HTMLonlineSchool.replace("%data%", course.school);
     var formattedDate = HTMLonlineDates.replace("%data%", course.date);
     var formattedUrl = HTMLonlineLink.replace("%data%", course.url);
     var formattedDescription = HTMLonlineDescription.replace("%data%", 
       course.description);
+
     $(".education-entry:last").append(formattedUrl + formattedTitle + 
       formattedSchool, formattedDate, formattedDescription);
   });
@@ -214,3 +238,6 @@ bio.display();
 work.display();
 projects.display();
 education.display();
+
+// Adding the map section
+$("#mapDiv").append(googleMap);
