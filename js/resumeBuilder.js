@@ -251,3 +251,9 @@ $(window).resize(function(){
     $(".pull-right").removeClass("pull-right");    
   }
 });
+
+$(window).load(function(){
+  if($(window).width() < 780){
+    $(".pull-right").removeClass("pull-right");
+  }
+});
