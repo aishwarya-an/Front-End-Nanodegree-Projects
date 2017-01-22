@@ -108,29 +108,32 @@ var projects = {
       "image" : "images/boggle.jpg"
     },
     {
-      "title" : "Spelling Checker",
-      "link" : "https://github.com/aishwarya-an/Spelling-Checker",
-      "date" : "2015",
-      "description" : "This application checks the spelling of words in a \
-        file, prints words with spelling errors and suggests correct words.",
-      "image" : "images/spelling_checker.jpg"
-    },
-    {
       "title" : "Maze Solver",
       "link" : "https://github.com/aishwarya-an/Maze-Solver",
       "date" : "2015",
       "description" : "This is a game which creates a maze for the user to \
         solve it.",
       "image" : "images/maze.jpg"
+    },
+    {
+      "title" : "Spelling Checker",
+      "link" : "https://github.com/aishwarya-an/Spelling-Checker",
+      "date" : "2015",
+      "description" : "This application checks the spelling of words in a \
+        file, prints words with spelling errors and suggests correct words.",
+      "image" : "images/spelling_checker.jpg"
     }
   ]
 }
 
 projects.display = function(){
+  var projectThumbnail = '<div class="thumbnail"></div>';
   // for each project, create variables necessary to append the project details
   projects.projects.forEach(function(project){
     // Creating a new div for each project
     $("#projects").append(HTMLprojectStart);
+    $(".project-entry").addClass("col-md-6 pull-right");
+    $(".project-entry:last").append(projectThumbnail);
 
     var formattedLink = HTMLprojectLink.replace("%data%", project.link);
     var formattedTitle = HTMLprojectTitle.replace("%data%", project.title);
@@ -139,7 +142,7 @@ projects.display = function(){
                                                         project.description);
     var formattedImage = HTMLprojectImage.replace("%data%", project.image);
 
-    $(".project-entry:last").append(formattedLink + formattedTitle, 
+    $(".thumbnail:last").append(formattedLink + formattedTitle, 
       formattedDate, formattedDescription, formattedImage);
   });
 }
@@ -198,6 +201,7 @@ var education = {
 }
 
 education.display = function(){
+  var educationThumbnail = '<div class="thumbnail"></div>';
   // Creating a new div for the school
   $("#education").append(HTMLschoolStart);
 
@@ -216,11 +220,11 @@ education.display = function(){
 
   // Appending the online course header
   $("#education").append(HTMLonlineClasses);
-
+  $("#education").append(HTMLschoolStart);
   // For each online course undertaken, append the details 
   education.onlineCourses.forEach(function(course){
     // Creating a new div for each course
-    $("#education").append(HTMLschoolStart);
+    $(".education-entry:last").append(educationThumbnail);
 
     var formattedTitle = HTMLonlineTitle.replace("%data%", course.title);
     var formattedSchool = HTMLonlineSchool.replace("%data%", course.school);
@@ -229,7 +233,7 @@ education.display = function(){
     var formattedDescription = HTMLonlineDescription.replace("%data%", 
       course.description);
 
-    $(".education-entry:last").append(formattedUrl + formattedTitle + 
+    $(".thumbnail:last").append(formattedUrl + formattedTitle + 
       formattedSchool, formattedDate, formattedDescription);
   });
 }
@@ -241,3 +245,9 @@ education.display();
 
 // Adding the map section
 $("#mapDiv").append(googleMap);
+
+$(window).resize(function(){
+  if($(window).width() < 780){
+    $(".pull-right").removeClass("pull-right");    
+  }
+});
