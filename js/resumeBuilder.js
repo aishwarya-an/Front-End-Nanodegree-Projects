@@ -12,7 +12,7 @@ var bio = {
               "images/logo-javascript.svg", "images/logo-jquery.svg", 
               "images/logo-git.svg"],
   "biopic" : "images/biopic.png"
-}
+};
 
 bio.display = function(){
   // Variables for the bio details
@@ -47,7 +47,7 @@ bio.display = function(){
   $("#footerContacts").append(formattedEmail);
   $("#footerContacts").append(formattedGithub);
   $("#footerContacts").append(formattedLocation);
-}
+};
 
 var work = {
   "jobs" : [
@@ -59,7 +59,7 @@ var work = {
       "description" : "Studying web development, data structures and algorithms."
     }
   ]
-}
+};
 
 work.display = function(){
   // Creating a new div for work section
@@ -80,7 +80,7 @@ work.display = function(){
   $(".work-entry").append(formattedDate);
   $(".work-entry").append(formattedLocation);
   $(".work-entry").append(formattedDescription);
-}
+};
 
 var projects = {
   "projects" : [
@@ -88,16 +88,16 @@ var projects = {
       "title" : "Online Resume",
       "link" : "#",
       "date" : "2017",
-      "description" : "An Online Resume, built on Javascript objects appended \
-        with new skills and information dynamically via jQuery",
+      "description" : "An Online Resume, built on Javascript objects appended " +
+        "with new skills and information dynamically via jQuery",
       "image" : "images/resume.png"
     },
     {
       "title" : "Portfolio Website",
       "link" : "https://github.com/aishwarya-an/Portfolio-Website",
       "date" : "2016",
-      "description" : "This website features the projects undertaken in the \
-        field of Algorithms and Front-end Web Development.",
+      "description" : "This website features the projects undertaken in the " +
+        "field of Algorithms and Front-end Web Development.",
       "image" : "images/portfolio.png"
     },
     {
@@ -111,20 +111,20 @@ var projects = {
       "title" : "Maze Solver",
       "link" : "https://github.com/aishwarya-an/Maze-Solver",
       "date" : "2015",
-      "description" : "This is a game which creates a maze for the user to \
-        solve it.",
+      "description" : "This is a game which creates a maze for the user to " + 
+        "solve it.",
       "image" : "images/maze.jpg"
     },
     {
       "title" : "Spelling Checker",
       "link" : "https://github.com/aishwarya-an/Spelling-Checker",
       "date" : "2015",
-      "description" : "This application checks the spelling of words in a \
-        file, prints words with spelling errors and suggests correct words.",
+      "description" : "This application checks the spelling of words in a " +
+        "file, prints words with spelling errors and suggests correct words.",
       "image" : "images/spelling_checker.jpg"
     }
   ]
-}
+};
 
 projects.display = function(){
   var projectThumbnail = '<div class="thumbnail"></div>';
@@ -145,7 +145,7 @@ projects.display = function(){
     $(".thumbnail:last").append(formattedLink + formattedTitle, 
       formattedDate, formattedDescription, formattedImage);
   });
-}
+};
 
 var education = {
   "schools" : [
@@ -164,41 +164,41 @@ var education = {
       "school" : "Udacity",
       "date" : "2017",
       "url" : "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001",
-      "description" : "Learnt the fundamentals of how the web works, gained \
-       working knowledge of the three foundational languages that power each \
-       and every website: HTML, CSS and JavaScript and thus helped in building\
-       beautiful, responsive websites optimized for mobile and desktop performance."
+      "description" : "Learnt the fundamentals of how the web works, gained " +
+       "working knowledge of the three foundational languages that power each " +
+       "and every website: HTML, CSS and JavaScript and thus helped in building " +
+       "beautiful, responsive websites optimized for mobile and desktop performance."
     },
     {
       "title" : "Algorithmic Thinking: Part 1",
       "school" : "Rice University",
       "date" : "2015",
       "url" : "https://www.coursera.org/learn/algorithmic-thinking-1",
-      "description" : "Learnt analysing efficiency of algorithms and graph \
-       algorithms.Applied the same in analysis of citation graphs and \
-       computer networks."
+      "description" : "Learnt analysing efficiency of algorithms and graph " +
+       "algorithms.Applied the same in analysis of citation graphs and " +
+       "computer networks."
     },
     {
       "title" : "Algorithmic Thinking: Part 2",
       "school" : "Rice University",
       "date" : "2015",
       "url" : "https://www.coursera.org/learn/algorithmic-thinking-2",
-      "description" : "Learnt divide and conquer and dynamic programming \
-        techniques. Applied the same in finding closest pair using different \
-        clustering algorithms and application of sequence alignments in \
-        genomics and text comparison."
+      "description" : "Learnt divide and conquer and dynamic programming " +
+        "techniques. Applied the same in finding closest pair using different " +
+        "clustering algorithms and application of sequence alignments in " +
+        "genomics and text comparison."
     },
     {
       "title" : "Algorithm: Design and Analysis",
       "school" : "Stanford University",
       "date" : "2014",
       "url" : "http://online.stanford.edu/course/algorithms-design-and-analysis-part-1",
-      "description" : "Learnt asymptotic analysis, divide and conquer \
-        algorithms, sorting and searching, basic randomized algorithms, \
-        graph search, shortest paths, heaps, search trees, and hash tables."
+      "description" : "Learnt asymptotic analysis, divide and conquer " +
+        "algorithms, sorting and searching, basic randomized algorithms, " + 
+        "graph search, shortest paths, heaps, search trees, and hash tables."
     }
   ]
-}
+};
 
 education.display = function(){
   var educationThumbnail = '<div class="thumbnail"></div>';
@@ -236,7 +236,7 @@ education.display = function(){
     $(".thumbnail:last").append(formattedUrl + formattedTitle + 
       formattedSchool, formattedDate, formattedDescription);
   });
-}
+};
 
 bio.display();
 work.display();
