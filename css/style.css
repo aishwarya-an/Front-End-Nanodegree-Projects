@@ -9,8 +9,8 @@ h3,
 h4,
 h5,
 h6 {
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
   font-family: "Roboto", sans-serif;
 }
 
@@ -57,10 +57,8 @@ h2,
 h3,
 h4,
 h5 {
-  padding:10px 5%;
-
+  padding: 10px 5%;
 }
-
 
 .date-text {
   font-style: italic;
@@ -76,7 +74,6 @@ h5 {
   color: #999;
   line-height: 16px;
   float: right;
-
 }
 
 p {
@@ -105,12 +102,12 @@ a {
 }
 
 #skills,
-li{
+li {
   display: inline-block;
 }
 
-#name{
-color: #f5ae23;
+#name {
+  color: #f5ae23;
 }
 
 .orange {
@@ -129,7 +126,7 @@ color: #f5ae23;
 .gray {
   background-color: #f3f3f3;
   padding-bottom: 10px;
-  clear:both;
+  clear: both;
 }
 
 .dark-gray {
@@ -181,22 +178,22 @@ span {
   padding: 5px;
 }
 
-.role{
+.role {
   font-weight: bold;
   color: white;
 }
 
-.skills-logo{
+.skills-logo {
   height: 70px;
   padding-right: 50px;
 }
 
-.project-image{
+.project-image {
   height: 100px;
   width: 100px;
 }
 
-.thumbnail{
+.thumbnail {
   margin-right: 1%;
   margin-left: 1%;
 }
@@ -223,47 +220,51 @@ span {
 @media only screen and (max-width: 1024px) {
   #lets-connect {
     margin-top: 5%;
-  }
+  };
 }
 
 @media only screen and (max-width:900px) {
   .biopic {
     width: 175px;
-  }
+  };
 }
 
 @media only screen and (max-width: 750px) {
   #lets-connect {
     margin-top: 10%;
   }
+
   .biopic {
     width: 150px;
   }
+
   .welcome-message {
     display: none;
   }
+
   #skills-h3 {
     text-align: center;
   }
+
   .skills-logo {
     height: 60px;
     padding-right: 30px;
   }
+
   #map {
     margin: -5% 5%;
-  }
+  };
 }
 
 @media only screen and (min-width: 750px) {
   #skills-h3,
   .biopic {
     display: block;
-  }
-
+  };
 }
 
 @media only screen and (min-width: 750px) and (max-width: 1010px) {
   .skills-logo {
     padding-right: 11px;
-  }
+  };
 }
