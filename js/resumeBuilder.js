@@ -28,10 +28,8 @@ bio.display = function() {
   // Appending the variables onto the page
   $("#header").prepend(formattedRole);
   $("#header").prepend(formattedName);
-  $("#topContacts").append(formattedMobile);
-  $("#topContacts").append(formattedEmail);
-  $("#topContacts").append(formattedGithub);
-  $("#topContacts").append(formattedLocation);
+  $("#topContacts, #footerContacts").append(formattedMobile, formattedEmail,
+    formattedGithub, formattedLocation);
   $("#header").append(formattedBiopic);
 
   // Appending the skills
@@ -42,12 +40,6 @@ bio.display = function() {
       $("#skills").append(formattedSkills);
     }
   }
-
-  // Adding the contacts to the footer of the page
-  $("#footerContacts").append(formattedMobile);
-  $("#footerContacts").append(formattedEmail);
-  $("#footerContacts").append(formattedGithub);
-  $("#footerContacts").append(formattedLocation);
 };
 
 var work = {
@@ -55,77 +47,76 @@ var work = {
     "employer": "Self",
     "title": "Student",
     "location": "Rajajinagar, Bangalore",
-    "date": "In Progress",
+    "dates": "In Progress",
     "description": "Studying web development, data structures and algorithms."
   }]
 };
 
 work.display = function() {
-  // Creating a new div for work section
-  $("#workExperience").append(HTMLworkStart);
+  work.jobs.forEach(function(job) {
+    // Creating a new div for work section
+    $("#workExperience").append(HTMLworkStart);
 
-  // Creating variables necessary to append the work details
-  var formattedEmployer = HTMLworkEmployer.replace("%data%",
-    work.jobs[0].employer);
-  var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[0].title);
-  var formattedDate = HTMLworkDates.replace("%data%", work.jobs[0].date);
-  var formattedLocation = HTMLworkLocation.replace("%data%",
-    work.jobs[0].location);
-  var formattedDescription = HTMLworkDescription.replace("%data%",
-    work.jobs[0].description);
+    // Creating variables necessary to append the work details
+    var formattedEmployer = HTMLworkEmployer.replace("%data%", job.employer);
+    var formattedTitle = HTMLworkTitle.replace("%data%", job.title);
+    var formattedDate = HTMLworkDates.replace("%data%", job.dates);
+    var formattedLocation = HTMLworkLocation.replace("%data%", job.location);
+    var formattedDescription = HTMLworkDescription.replace("%data%",
+      job.description);
 
-  // Appending the work details
-  $(".work-entry").append(formattedEmployer + formattedTitle);
-  $(".work-entry").append(formattedDate);
-  $(".work-entry").append(formattedLocation);
-  $(".work-entry").append(formattedDescription);
+    // Appending the work details
+    $(".work-entry:last").append(formattedEmployer + formattedTitle,
+      formattedDate, formattedLocation, formattedDescription);
+  });
 };
 
 var projects = {
   "projects": [{
       "title": "Online Resume",
-      "link": "#",
-      "date": "2017",
+      "url": "#",
+      "dates": "2017",
       "description": "An Online Resume, built on Javascript objects appended " +
         "with new skills and information dynamically via jQuery",
-      "image": "images/resume.png"
+      "images": ["images/resume.png"]
     },
     {
       "title": "Portfolio Website",
-      "link": "https://github.com/aishwarya-an/Portfolio-Website",
-      "date": "2016",
+      "url": "https://github.com/aishwarya-an/Portfolio-Website",
+      "dates": "2016",
       "description": "This website features the projects undertaken in the " +
         "field of Algorithms and Front-end Web Development.",
-      "image": "images/portfolio.png"
+      "images": ["images/portfolio.png"]
     },
     {
       "title": "Boggle",
-      "link": "https://github.com/aishwarya-an/Boggle-Game",
-      "date": "2015",
+      "url": "https://github.com/aishwarya-an/Boggle-Game",
+      "dates": "2015",
       "description": "This is a game to form words from a grid of letters.",
-      "image": "images/boggle.jpg"
+      "images": ["images/boggle.jpg"]
     },
     {
       "title": "Maze Solver",
-      "link": "https://github.com/aishwarya-an/Maze-Solver",
-      "date": "2015",
+      "url": "https://github.com/aishwarya-an/Maze-Solver",
+      "dates": "2015",
       "description": "This is a game which creates a maze for the user to " +
         "solve it.",
-      "image": "images/maze.jpg"
+      "images": ["images/maze.jpg"]
     },
     {
       "title": "Spelling Checker",
-      "link": "https://github.com/aishwarya-an/Spelling-Checker",
-      "date": "2015",
+      "url": "https://github.com/aishwarya-an/Spelling-Checker",
+      "dates": "2015",
       "description": "This application checks the spelling of words in a " +
         "file, prints words with spelling errors and suggests correct words.",
-      "image": "images/spelling_checker.jpg"
+      "images": ["images/spelling_checker.jpg"]
     }
   ]
 };
 
 projects.display = function() {
   var projectThumbnail = '<div class="thumbnail"></div>';
+  
   // for each project, create variables necessary to append the project details
   projects.projects.forEach(function(project) {
     // Creating a new div for each project
@@ -133,15 +124,19 @@ projects.display = function() {
     $(".project-entry").addClass("col-md-6 pull-right");
     $(".project-entry:last").append(projectThumbnail);
 
-    var formattedLink = HTMLprojectLink.replace("%data%", project.link);
+    var formattedLink = HTMLprojectLink.replace("%data%", project.url);
     var formattedTitle = HTMLprojectTitle.replace("%data%", project.title);
-    var formattedDate = HTMLprojectDates.replace("%data%", project.date);
+    var formattedDate = HTMLprojectDates.replace("%data%", project.dates);
     var formattedDescription = HTMLprojectDescription.replace("%data%",
       project.description);
-    var formattedImage = HTMLprojectImage.replace("%data%", project.image);
-
+    
     $(".thumbnail:last").append(formattedLink + formattedTitle,
-      formattedDate, formattedDescription, formattedImage);
+      formattedDate, formattedDescription);
+    
+    project.images.forEach(function(image) {
+      var formattedImage = HTMLprojectImage.replace("%data%", image);
+      $(".thumbnail:last").append(formattedImage);
+    });
   });
 };
 
@@ -150,14 +145,14 @@ var education = {
     "name": "M.S Ramaiah College of Arts, Science and Commerce",
     "location": "Mathikere, Bangalore",
     "degree": "BCA",
-    "date": "2016 - 18",
+    "dates": "2016 - 18",
     "majors": ["CS"],
     "url": "https://msrcasc.edu.in"
   }],
   "onlineCourses": [{
       "title": "Front-end Web Development",
       "school": "Udacity",
-      "date": "2017",
+      "dates": "2017",
       "url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001",
       "description": "Learnt the fundamentals of how the web works, gained " +
         "working knowledge of the three foundational languages that power each " +
@@ -167,7 +162,7 @@ var education = {
     {
       "title": "Algorithmic Thinking: Part 1",
       "school": "Rice University",
-      "date": "2015",
+      "dates": "2015",
       "url": "https://www.coursera.org/learn/algorithmic-thinking-1",
       "description": "Learnt analysing efficiency of algorithms and graph " +
         "algorithms.Applied the same in analysis of citation graphs and " +
@@ -176,7 +171,7 @@ var education = {
     {
       "title": "Algorithmic Thinking: Part 2",
       "school": "Rice University",
-      "date": "2015",
+      "dates": "2015",
       "url": "https://www.coursera.org/learn/algorithmic-thinking-2",
       "description": "Learnt divide and conquer and dynamic programming " +
         "techniques. Applied the same in finding closest pair using different " +
@@ -186,7 +181,7 @@ var education = {
     {
       "title": "Algorithm: Design and Analysis",
       "school": "Stanford University",
-      "date": "2014",
+      "dates": "2014",
       "url": "http://online.stanford.edu/course/algorithms-design-and-analysis-part-1",
       "description": "Learnt asymptotic analysis, divide and conquer " +
         "algorithms, sorting and searching, basic randomized algorithms, " +
@@ -197,25 +192,26 @@ var education = {
 
 education.display = function() {
   var educationThumbnail = '<div class="thumbnail"></div>';
-  // Creating a new div for the school
-  $("#education").append(HTMLschoolStart);
+  
+  education.schools.forEach(function(school) {
+    // Creating a new div for the school
+    $("#education").append(HTMLschoolStart);
 
-  var formattedLink = HTMLschoolLink.replace("%data%", education.schools[0].url);
-  var formattedName = HTMLschoolName.replace("%data%",
-    education.schools[0].name);
-  var formattedDegree = HTMLschoolDegree.replace("%data%",
-    education.schools[0].degree);
-  var formattedLocation = HTMLschoolLocation.replace("%data%",
-    education.schools[0].location);
-  var formattedDate = HTMLschoolDates.replace("%data%", education.schools[0].date);
-  var formattedMajor = HTMLschoolMajor.replace("%data%", education.schools[0].majors);
+    var formattedLink = HTMLschoolLink.replace("%data%", school.url);
+    var formattedName = HTMLschoolName.replace("%data%", school.name);
+    var formattedDegree = HTMLschoolDegree.replace("%data%", school.degree);
+    var formattedLocation = HTMLschoolLocation.replace("%data%", school.location);
+    var formattedDate = HTMLschoolDates.replace("%data%", school.dates);
+    var formattedMajor = HTMLschoolMajor.replace("%data%", school.majors);
 
-  $(".education-entry").append(formattedLink + formattedName + formattedDegree,
-    formattedDate, formattedLocation, formattedMajor);
+    $(".education-entry:last").append(formattedLink + formattedName +
+      formattedDegree, formattedDate, formattedLocation, formattedMajor);
+  });
 
   // Appending the online course header
   $("#education").append(HTMLonlineClasses);
   $("#education").append(HTMLschoolStart);
+  
   // For each online course undertaken, append the details 
   education.onlineCourses.forEach(function(course) {
     // Creating a new div for each course
@@ -223,7 +219,7 @@ education.display = function() {
 
     var formattedTitle = HTMLonlineTitle.replace("%data%", course.title);
     var formattedSchool = HTMLonlineSchool.replace("%data%", course.school);
-    var formattedDate = HTMLonlineDates.replace("%data%", course.date);
+    var formattedDate = HTMLonlineDates.replace("%data%", course.dates);
     var formattedUrl = HTMLonlineLink.replace("%data%", course.url);
     var formattedDescription = HTMLonlineDescription.replace("%data%",
       course.description);
