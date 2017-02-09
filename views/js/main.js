@@ -452,27 +452,10 @@ window.performance.measure("measure_pizza_generation", "mark_start_generating", 
 var timeToGenerate = window.performance.getEntriesByName("measure_pizza_generation");
 console.log("Time to generate pizzas on load: " + timeToGenerate[0].duration + "ms");
 
-// Iterator for number of times the pizzas in the background have scrolled.
-// Used by updatePositions() to decide when to log the average time per frame
-var frame = 0;
-
-// Logs the average amount of time per 10 frames needed to move the sliding background pizzas on scroll.
-function logAverageFrame(times) {   // times is the array of User Timing measurements from updatePositions()
-  var numberOfEntries = times.length;
-  var sum = 0;
-  for (var i = numberOfEntries - 1; i > numberOfEntries - 11; i--) {
-    sum = sum + times[i].duration;
-  }
-  console.log("Average scripting time to generate last 10 frames: " + sum / 10 + "ms");
-}
-
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
-
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
-  frame++;
-  window.performance.mark("mark_start_frame");
 
   // This loop is used to store the values is used in changing the style of the
   // .mover . Since, the below 5 calculations were done repeatedly 'l' number 
@@ -482,16 +465,8 @@ function updatePositions() {
     array.push(100 * Math.sin(i+j));
   var items = document.querySelectorAll('.mover');
   for (var i = 0; i < items.length; i++) {
-    items[i].style.left = items[i].basicLeft + array[i%5] + 'px';
-  }
-
-  // User Timing API to the rescue again. Seriously, it's worth learning.
-  // Super easy to create custom metrics.
-  window.performance.mark("mark_end_frame");
-  window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
-  if (frame % 10 === 0) {
-    var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
-    logAverageFrame(timesToUpdatePosition);
+    var dimension = items[i].basicLeft + array[i%5] + 'px';
+    items[i].style.transform = 'translateX(' + dimension + ')';
   }
 }
 
@@ -503,7 +478,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
   var movingPizza = document.querySelector("#movingPizzas1");
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < 50; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
