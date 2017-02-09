@@ -462,10 +462,10 @@ function updatePositions() {
   // of times, where 'l' is the number elements of class mover, it was better
   // to store these calculations and then use them.
   for (var i = 0, j = document.body.scrollTop / 1250, array = []; i < 5; i++)
-    array.push(100 * Math.sin(i+j));
+    array.push(Math.sin(i+j));
   var items = document.querySelectorAll('.mover');
   for (var i = 0; i < items.length; i++) {
-    var dimension = items[i].basicLeft + array[i%5] + 'px';
+    var dimension = items[i].basicLeft + (100 * array[i%5])- 1024 + 'px';
     items[i].style.transform = 'translateX(' + dimension + ')';
   }
 }
@@ -477,8 +477,11 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
+  // The number of needed rows
+  var rows = d = Math.ceil(window.innerHeight / s)
+  // Storing the element instead of calling the querySelector inside the loop
   var movingPizza = document.querySelector("#movingPizzas1");
-  for (var i = 0; i < 50; i++) {
+  for (var i = 0; i < rows*cols; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
