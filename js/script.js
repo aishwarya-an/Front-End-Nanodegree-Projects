@@ -49,7 +49,8 @@ function ViewModel (){
      });
 
     // @description To pop the infowindow
-    self.populateInfoWindow = function(marker, infoWindow) {
+    Hospital.prototype.populateInfoWindow = function(marker, infoWindow) {
+      var self = this;
       // Checking whether the infowwindow is open
       if (infoWindow.marker != marker) {
         infoWindow.marker = marker;
