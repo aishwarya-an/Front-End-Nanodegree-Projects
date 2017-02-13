@@ -1,0 +1,9 @@
+html,
+body,
+.container-fluid,
+.col-xs-9,
+.col-xs-3,
+#map {
+  height: 100%;
+}
+

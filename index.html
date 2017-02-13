@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hospitals in Bangalore</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <div class="container">
+    <div class="container-fluid">
       <div class="col-xs-3">
         <h1>Hospitals in Bangalore</h1>
         <div>
@@ -24,7 +25,8 @@
         <div id="map"></div>
       </div>
     </div>
-    <!--<script src="js/lib/jqueri-3.1.1.min.js"></script>
-    <script src="js/script.js"></script>-->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/script.js"></script>
+    <script onerror="showError()" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMCa4UsaCne1zhbPu8-1jbQtzRqZco1YU&v=3&callback=initMap" aysnc defer></script>
   </body>
 </html>
