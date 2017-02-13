@@ -23,73 +23,74 @@ function initMap() {
 
 // @description The viewmodel
 function ViewModel (){
-    var infoWindow = new google.maps.InfoWindow();
-	var bounds = new google.maps.LatLngBounds();
-    
-    // @description Hospital object contains the marker and functionality
-    // to populate infowindow.
-    function Hospital(obj) {
-      var self = this;
-      self.title = obj.title;
-      self.latitude = obj.location.lat;
-      self.longitude = obj.location.lng;
-      self.marker = new google.maps.Marker({
-        title: self.title,
-        position: {lat: self.latitude, lng: self.longitude},
-        map: map 
-      });
-
-      // @description When clicked on the marker the infoWindow pops.        
-      self.marker.addListener('click', function() {
-          self.populateInfoWindow(self.marker, infoWindow);
-          
-       });
-
-      // @description To pop the infowindow
-      self.populateInfoWindow = function(marker, infoWindow) {
-        // Checking whether the infowwindow is open
-        if (infoWindow.marker != marker) {
-          infoWindow.marker = marker;
-          // Add animation when clicked 
-          marker.setAnimation(google.maps.Animation.BOUNCE);
-            
-          // Info in the infowindow
-          var content = '<h2>' + self.title + '</h2><h3>Wiki Links</h3><ul>';
-          infoWindow.setContent(content);
-          // The wiki link in the infowindow  
-          var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + marker.title + "&format=json&callback=wikiCallback";
-          $.ajax(url, {
-            dataType: 'jsonp',
-            jsonp: "callback",
-            success: function(data){
-              var list = data[1];
-              var article = list[0];
-              var newContent = infoWindow.getContent() + "<li><a href='https://en.wikipedia.org/wiki/" + article + "'>" + marker.title + "</a></li></ul>";
-              infoWindow.setContent(newContent);
-            }, error: function(){
-                var newContent = infoWindow.getContent() + 
-                    "<p>Failed to load the wiki links</p>";
-                infoWindow.setContent(newContent);
-              }
-          });
-                                      
-          // Pop up the infowindow
-          infoWindow.open(map, marker);
-          // When closed, the animation should stop.
-          infoWindow.addListener('closeclick', function() {
-            infoWindow.marker = null;
-            marker.setAnimation(null);
-          });
-        }
-      };
-      // End of Hsopital object.
-    }
-    
+  var infoWindow = new google.maps.InfoWindow();
+  var bounds = new google.maps.LatLngBounds();
   var self = this;
   self.list = ko.observableArray([]);
   self.filter = ko.observable('');
+
+  // @description Hospital object contains the marker and functionality
+  // to populate infowindow.
+  function Hospital(obj) {
+    var self = this;
+    self.title = obj.title;
+    self.latitude = obj.location.lat;
+    self.longitude = obj.location.lng;
+    self.marker = new google.maps.Marker({
+      title: self.title,
+      position: {lat: self.latitude, lng: self.longitude},
+      map: map 
+    });
+
+    // @description When clicked on the marker the infoWindow pops.        
+    self.marker.addListener('click', function() {
+        self.populateInfoWindow(self.marker, infoWindow);
+        
+     });
+
+    // @description To pop the infowindow
+    self.populateInfoWindow = function(marker, infoWindow) {
+      // Checking whether the infowwindow is open
+      if (infoWindow.marker != marker) {
+        infoWindow.marker = marker;
+        // Add animation when clicked 
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+          
+        // Info in the infowindow
+        var content = '<h2>' + self.title + '</h2><h3>Wiki Links</h3><ul>';
+        infoWindow.setContent(content);
+        // The wiki link in the infowindow  
+        var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + marker.title + "&format=json&callback=wikiCallback";
+        $.ajax(url, {
+          dataType: 'jsonp',
+          jsonp: "callback",
+          success: function(data){
+            var list = data[1];
+            var article = list[0];
+            var newContent = infoWindow.getContent() + "<li><a href='https://en.wikipedia.org/wiki/" + article + "'>" + marker.title + "</a></li></ul>";
+            infoWindow.setContent(newContent);
+          }, error: function(){
+          	// If the api does not load
+              var newContent = infoWindow.getContent() + 
+                  "<p>Failed to load the wiki links</p>";
+              infoWindow.setContent(newContent);
+            }
+        });
+                                    
+        // Pop up the infowindow
+        infoWindow.open(map, marker);
+        // When closed, the animation should stop.
+        infoWindow.addListener('closeclick', function() {
+          infoWindow.marker = null;
+          marker.setAnimation(null);
+        });
+      }
+    };
+    // End of Hospital object.
+  }
     
-  // Renders all the locations.
+      
+  // @description Renders all the locations.
   function render(location) {
     // Creates Hospital objects and stores it in self.list
     var current;
@@ -103,6 +104,7 @@ function ViewModel (){
     map.fitBounds(bounds);
   }
 
+  // @description Filters the list as soon as an input is given
   self.filterList = ko.computed(function(){
     // An array storing all the filitered list
     var filtered = [];
@@ -118,14 +120,14 @@ function ViewModel (){
     }
     return filtered;
   });
-  
-  // Calling the render function to render all objects in the list
-  render(locations);
-  
+
   // The infowindow must pop up when an object in the list is clicked
   self.loadWindow = function (hospital){
       hospital.populateInfoWindow(hospital.marker, infoWindow);
   };
+
+  // Calling the render function to render all objects in the list
+  render(locations);
 }
 
 // @description Shows error when Google Map API is not loaded.
