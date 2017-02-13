@@ -13,11 +13,12 @@
         <h1>Hospitals in Bangalore</h1>
         <div>
           <h3>Filter sites by name</h3>
-          <input type="text" value="Filter..">
-          <button>Filter</button>
+          <input type="text" placeholder="Filter.." data-bind="value:filter, valueUpdate: 'afterkeydown'">
         </div>
-        <ul>
-          <li></li>
+        <ul data-bind="foreach: filterList">
+          <li>
+            <a href="#" data-bind="click: $root.loadWindow, text: title"></a>
+          </li>
         </ul>
       </div>
 
@@ -26,7 +27,8 @@
       </div>
     </div>
     <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/knockout.js"></script>
     <script src="js/script.js"></script>
-    <script onerror="showError()" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMCa4UsaCne1zhbPu8-1jbQtzRqZco1YU&v=3&callback=initMap" aysnc defer></script>
+    <script onerror="showError()" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMCa4UsaCne1zhbPu8-1jbQtzRqZco1YU&v=3&callback=initMap"></script>
   </body>
 </html>
