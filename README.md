@@ -8,7 +8,7 @@ This is a single page application featuring a number of hospitals in Bangalore, 
 * The JavaScript libraries used are Knockout and jQuery.  
 * Knockout JS library was used to implement the search and the list functionality of locations.  
 * jQuery library was used mainly for AJAX requests.  
-* Foursquare API was used to display images relating to each location.  
+* WikiLink API was used to display the wikipedia link of each location.  
 * `script.js` in the js folder contains the main code to implement the map, search and list functionality.  
 
 ## Install and Run
