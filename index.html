@@ -8,24 +8,33 @@
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="col-xs-3">
-        <h1>Hospitals in Bangalore</h1>
+	  <div id="map"></div>
+   	<img src="images/hamburger.png" width="30" height="30" class="open-button" onclick="openList()">
+   	<div id="listview">
+   			<h2>Hospitals in Bangalore</h2>
         <div>
           <h3>Filter sites by name</h3>
-          <input type="text" placeholder="Filter.." data-bind="value:filter, valueUpdate: 'afterkeydown'">
+          <img src="images/close2.png" width="30" height="30" class="close-button" onclick="closeList()">
         </div>
-        <ul data-bind="foreach: filterList">
-          <li>
-            <a href="#" data-bind="click: $root.loadWindow, text: title"></a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="col-xs-9">
-        <div id="map"></div>
-      </div>
-    </div>
+         <div>
+            <input type="text" placeholder="Filter.." data-bind="value:filter, valueUpdate: 'afterkeydown'">
+         </div>
+         <div>
+            <ul data-bind="foreach: filterList">
+          		<li>
+            		<a href="#" data-bind="click: $root.loadWindow, text: title"></a>
+          		</li>
+        		</ul>
+        </div>
+   	</div>
+   <script>
+      function openList() {
+         document.getElementById("listview").style.width = "300px";
+      }
+      function closeList() {
+         document.getElementById("listview").style.width = "0";
+      }
+   </script>
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/knockout.js"></script>
     <script src="js/script.js"></script>

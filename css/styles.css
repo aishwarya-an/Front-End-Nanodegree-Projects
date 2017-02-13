@@ -1,9 +1,51 @@
-html,
-body,
-.container-fluid,
-.col-xs-9,
-.col-xs-3,
-#map {
+html, body {
   height: 100%;
+  margin: 0; 
+  padding: 0; 
 }
 
+#map{ 
+  height: 100%; 
+}
+
+#listview{
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #313435;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 30px;
+}
+
+.open-button{
+  position: absolute;
+  left: 0px;
+  top: 50px;
+  margin: 5px;
+}
+.close-button{
+  float: right;
+  margin-top: -5px;
+}
+
+ul{
+  padding-left:10px;
+}
+
+h2,
+h3,
+li{
+  color:#f1593a;
+  height: 35px;
+  width: 100%;
+  padding-top: 5px;
+  list-style: none;
+  font-size: 20px;
+  border: 1px solid black;
+  border-left: none;
+  border-right: none;
+}
