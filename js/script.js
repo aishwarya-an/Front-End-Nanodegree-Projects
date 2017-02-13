@@ -67,7 +67,7 @@ function ViewModel (){
               var newContent = infoWindow.getContent() + "<li><a href='https://en.wikipedia.org/wiki/" + article + "'>" + marker.title + "</a></li></ul>";
               infoWindow.setContent(newContent);
             }, error: function(){
-                var newContent = infoWindow.getcontent() + 
+                var newContent = infoWindow.getContent() + 
                     "<p>Failed to load the wiki links</p>";
                 infoWindow.setContent(newContent);
               }
