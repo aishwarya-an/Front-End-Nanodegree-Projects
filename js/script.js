@@ -57,14 +57,14 @@ function ViewModel (){
           var content = '<h2>' + self.title + '</h2><h3>Wiki Links</h3><ul>';
           infoWindow.setContent(content);
           // The wiki link in the infowindow  
-          var url = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + marker.title + "&format=json&callback=wikiCallback";
+          var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + marker.title + "&format=json&callback=wikiCallback";
           $.ajax(url, {
             dataType: 'jsonp',
             jsonp: "callback",
             success: function(data){
               var list = data[1];
               var article = list[0];
-              var newContent = infoWindow.getContent() + "<li><a href='http://en.wikipedia.org/wiki/" + article + "'>" + marker.title + "</a></li></ul>";
+              var newContent = infoWindow.getContent() + "<li><a href='https://en.wikipedia.org/wiki/" + article + "'>" + marker.title + "</a></li></ul>";
               infoWindow.setContent(newContent);
             }, error: function(){
                 var newContent = infoWindow.getcontent() + 
