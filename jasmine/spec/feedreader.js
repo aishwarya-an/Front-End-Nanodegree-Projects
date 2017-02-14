@@ -85,10 +85,34 @@ $(function() {
         });
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection"
+    /* A new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function() {
 
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
+        /* This test ensures that when a new feed is loaded by the loadFeed 
+         * function that the content actually changes. Since, loadFeed() is 
+         * asynchronous, beforeEach() is used. The variables first and second
+         * are used to store the content of the feed headings inorder to
+         * compare them in the test.
          */
+        var first, second;
+
+        beforeEach(function(done) {
+          // Since, atleast 2 feeds are required to run the test.
+          if(allFeeds.length > 2){
+            loadFeed(0, function() {
+              first = $('.entry').text();
+              loadFeed(1, function() {
+                second = $('.entry').text();
+                done();
+              });
+            });
+          }
+        });
+
+        it('new feed loaded', function() {
+          // Comparison can be done only when there are atleast two feeds.
+          expect(allFeeds.length).toBeGreaterThan(2);
+          expect(first).not.toEqual(second);
+        });
+    });
 }());
