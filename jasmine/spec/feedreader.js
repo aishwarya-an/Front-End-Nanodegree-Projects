@@ -51,8 +51,8 @@ $(function() {
 
         // This test ensures the menu element is hidden by default.
         it('contains hidden menu', function(){
-          expect($('body').hasClass('menu-hidden')).toBeTruthy();
-          });
+          expect($('body').hasClass('menu-hidden')).toBe(true);
+        });
 
          /* This test ensures the menu changes visibility when the menu icon 
           * is clicked. This test has two expectations: does the menu display when
@@ -60,9 +60,9 @@ $(function() {
           */
         it('menu changes visibility when menu icon is clicked', function(){
           $('.menu-icon-link').trigger('click');
-          expect($('body').hasClass('menu-hidden')).toBeFalsy();
+          expect($('body').hasClass('menu-hidden')).toBe(false);
           $('.menu-icon-link').trigger('click');
-          expect($('body').hasClass('menu-hidden')).toBeTruthy();
+          expect($('body').hasClass('menu-hidden')).toBe(true);
         });
 
     });
@@ -77,10 +77,14 @@ $(function() {
          * asynchronous done() function.
          */
         beforeEach(function(done) {
-          loadFeed(0, done);
+          // Checking for out-of-bound array accesses.
+          if(allFeeds.length > 0){
+            loadFeed(0, done);
+          }
         });
 
         it('at least one feed is present', function() {
+          expect(allFeeds.length).toBeGreaterThan(0);
           expect($('.feed .entry').length).not.toBe(0);
         });
     });
