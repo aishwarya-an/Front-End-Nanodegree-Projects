@@ -1,6 +1,6 @@
 #Neighbourhood Map Project
 
-This is a single page application featuring a number of hospitals in Bangalore, India. This application offers functionality such as displaying map markers to identify the locations, a search function to easily discover the location and a listview to support simple browsing of all locations.  
+This is a single page application displaying a map featuring a number of hospitals in Bangalore, India. This application offers functionality such as displaying map markers to identify the locations, a search function to easily discover the location and a listview to support simple browsing of all locations.  
 
 ## Implementation
 
@@ -12,7 +12,7 @@ This is a single page application featuring a number of hospitals in Bangalore, 
 * `script.js` in the js folder contains the main code to implement the map, search and list functionality.  
 
 ## Install and Run
-* To run a live version of the project, go to [Link](https://aishwarya-an.github.io/Neighbourhood-Map).
+* To run a live version of the project, go to [Link](https://aishwarya-an.github.io/Neighbourhood-Map).  
 ***OR***
 * Download or clone the repository, to install the source code. To run the application, open `index.html` in a browser. 
 
