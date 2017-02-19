@@ -10,7 +10,7 @@ The following techniques were applied to reduce the Critical Rendering Path leng
 * Run all JavaScripts at the end of document's body
 * Optimize images.
  
-As of 09 February 2017, [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Faishwarya-an.github.io%2Ffrontend-nanodegree-mobile-portfolio%2F) displays a score of:
+As of 09 February 2017, PageSpeed Insights displays a score of:
 * 95 / 100 for mobile
 * 93 / 100 for desktop
 
