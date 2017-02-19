@@ -12,7 +12,5 @@ This is a single page application featuring a number of hospitals in Bangalore, 
 * `script.js` in the js folder contains the main code to implement the map, search and list functionality.  
 
 ## Install and Run
-* To run a live version of the project, go to [Link](https://aishwarya-an.github.io/Neighbourhood-Map).
-***OR***
 * Download or clone the repository, to install the source code. To run the application, open `index.html` in a browser. 
 
